@@ -14,3 +14,11 @@ CREATE TABLE "urls" (
 	"visitCount" INTEGER NOT NULL DEFAULT 0,
 	"createdAt" TIME WITH TIME ZONE NOT NULL DEFAULT NOW()
 );
+
+CREATE TABLE "sessions" (
+	"id" SERIAL PRIMARY KEY,
+	"token" TEXT NOT NULL,
+	"userId" INTEGER NOT NULL REFERENCES "users"("id"), 
+	"isActive" bool NOT NULL DEFAULT true,
+	"createdAt" TIME WITH TIME ZONE NOT NULL DEFAULT NOW()
+);
