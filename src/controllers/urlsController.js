@@ -26,3 +26,20 @@ export async function shortenURL(req, res) {
     }
 
 }
+
+export async function getUrlById(req, res) {
+    const {id} = req.params;
+
+    try {
+        const shortURL = await db.query(`
+            SELECT id, "shortURL", url FROM urls WHERE id=$1
+        `, [id]);
+
+        return shortURL.rows.length <= 0
+        ? res.sendStatus(404)
+        : res.status(200).send(shortURL.rows[0]);
+    } catch (e) {
+        console.log(e)
+        return res.status(500).send(e);
+    }
+}
