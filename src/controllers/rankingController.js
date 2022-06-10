@@ -14,7 +14,7 @@ export async function getRanking(req, res) {
             ORDER BY "visitCount" DESC
             LIMIT 10
         `);
-        res.stauts(200).send(teste.rows)
+        res.status(200).send(teste.rows)
     } catch (e) {
         console.log(e);
         return res.sendStatus(500);
