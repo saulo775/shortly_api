@@ -12,6 +12,12 @@ const databaseConfig = {
     }
 }
 
+if (process.env.MODE === "PROD") {
+    databaseConfig.ssl = {
+        rejectUnauthorized: false
+    }
+}
+
 const db = new Pool({
     databaseConfig
 });
